@@ -1,0 +1,46 @@
+# --- experiment artifacts (kept outside the repo) ---
+mlruns/
+mlj_revision/
+experiments/
+metrics_rci/
+slurm_logs/
+benchmark_results/
+cachedir/
+*.out
+*.err
+
+# --- large inputs downloaded rather than committed ---
+chembl_*_chemreps.txt
+taxdump/
+*.tar.gz
+
+# --- python ---
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+.venv/
+
+# --- editor / OS ---
+.DS_Store
+.idea/
+.vscode/
+
+# --- stray editor / R console files ---
+.Rhistory
+.Rdata
+.Rproj.user/
+data/raw_glycan/
+
+# --- datasets are rebuilt from public sources (README section 4), not committed;
+# only the ontologies and the molecule tree-filter script ship with the code ---
+data/*
+!data/molecules/
+data/molecules/*
+!data/molecules/ontology_tree
+!data/molecules/tree_data_generation_process.sh
+!data/mergertrees/
+data/mergertrees/*
+!data/mergertrees/ontology_mergertrees

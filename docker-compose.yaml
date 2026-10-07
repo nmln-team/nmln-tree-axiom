@@ -1,0 +1,21 @@
+services:
+  base:
+    build:
+      context: .
+      args:
+        PYTHON_VERSION: 3.10.15
+        USER_ID: "${USER_ID:-501}"
+        GROUP_ID: "${GROUP_ID:-20}"
+    image: jungninja/nmln:latest
+    runtime: nvidia
+    environment:
+      - LOGNAME
+      - MLFLOW_TRACKING_URI
+      - MLFLOW_TRACKING_USERNAME
+      - DAGSHUB_REPO_OWNER
+      - DAGSHUB_REPO_NAME
+      - DAGSHUB_USER_TOKEN
+    volumes:
+      - ./:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
