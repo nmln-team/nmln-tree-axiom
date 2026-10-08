@@ -225,24 +225,6 @@ python scripts/benchmark_tree_samplers.py \
     --reps 5 --time-limit 60 --device cpu --out benchmark_results/tree_samplers.csv
 ```
 
-## 8. Reproducibility notes
-
-* Every run logs its full configuration, including `seed`, as MLflow params;
-  `generate_time_table.py` aggregates over seeds and reports the number of
-  repetitions per cell.
-* Every stochastic component draws from its own explicitly seeded stream, so a
-  given `--seed` reproduces a run bit-for-bit across processes. Two streams
-  need explicit treatment: Wilson's sampler runs in numba, whose RNG is
-  separate from NumPy's and is seeded from inside a jitted function; and the
-  blocked sampler's constraint ordering uses its own `random.Random` rather
-  than the global module, which other libraries in the stack also consume.
-* The results in the paper predate this fix and were produced as five
-  independent restarts per cell rather than five replayable runs. The mean ±
-  std over seeds is unaffected; re-running one seed today lands within that
-  spread rather than reproducing a specific historical run.
-* This repository contains only the code path the reported experiments
-  execute. Samplers, potentials and domains that existed during development
-  but are not behind any reported number have been removed.
 
 ## License
 
